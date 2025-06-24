@@ -1,6 +1,14 @@
 ## Overview  
-This whole analysis and visualization done using dataset CONTOSO_100K provided by company named contoso. The raw tables cleaned and filtered using SQL, built database views to simplify the key metrics, and then visualized those views in Power BI. Based on the Power BI dashboards, I conducted a detailed analysis to understand what drives net revenue and to recommend ways to improve profitability. 
+This whole analysis and visualization done using dataset **CONTOSO_100K** provided by company named Contoso. The raw tables cleaned and filtered using SQL, built database views to simplify the key metrics, and then visualized those views in Power BI. Based on the Power BI dashboards, I conducted a detailed analysis to understand what drives net revenue and to recommend ways to improve profitability.
 
+## Data Model  
+This dataset contains **5 tables** which are connected as follows (all relationships are many-to-one):
+
+- **sales.customerkey** → **customer.customerkey**  
+- **sales.orderdate** → **date.date**  
+- **sales.deliverydate** → **date.date**  
+- **sales.productkey** → **product.productkey**  
+- **sales.storekey** → **store.storekey**  
 
 ## Business Problem  
 Contoso’s order count rose steadily from 2015 to 2024, but net revenue (total sales minus discounts) stalled after 2022 and then fell. This suggests that deeper discounts, a shift toward new-customer acquisition, and uneven store results may have reduced overall profit. The project aims to identify which factors most affect net revenue and how to address them.
@@ -77,4 +85,4 @@ Contoso’s order count rose steadily from 2015 to 2024, but net revenue (total 
    Redirect marketing efforts to high-performing flagship locations and test pop-up events in smaller markets.  
 
 7. **Track New-Customer Retention**  
-   Measure how many new customers return without extra discounts to evaluate loyalty program success.  
+   Measure how many new customers return without extra discounts to evaluate loyalty program success.
