@@ -1,6 +1,15 @@
 ## Overview  
 This project explores Contoso’s sales from 2015 to 2024. It looks at orders, discounts, customer types, product variants, and store performance to find what drives net revenue and suggest ways to improve it.
 
+## Data Model  
+This dataset contains **5 tables** which are connected as follows (all relationships are many-to-one):
+
+- **sales.customerkey** → **customer.customerkey**  
+- **sales.orderdate** → **date.date**  
+- **sales.deliverydate** → **date.date**  
+- **sales.productkey** → **product.productkey**  
+- **sales.storekey** → **store.storekey**  
+
 ## Business Problem  
 Order volume at Contoso rose steadily, yet net revenue (sales minus discounts) stalled after 2022 and then declined. Deep discounts, focus on new-customer acquisition, and uneven store results have limited profit growth. This analysis aims to identify the main factors and offer practical recommendations.
 
