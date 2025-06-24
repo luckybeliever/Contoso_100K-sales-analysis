@@ -1,181 +1,135 @@
-# Sales Analysis of Contoso_100K dataset
+## Overview  
+This project explores Contoso’s sales from 2015 to 2024. It looks at orders, discounts, customer types, product variants, and store performance to find what drives net revenue and suggest ways to improve it.
 
-Over the last ten years (2015–2024), our company has sold more and more products every year. But at the same time, we’ve been giving bigger and bigger discounts. We worry that these discounts and a changing mix of new versus returning customers might be cutting into our profits.
+## Business Problem  
+Order volume at Contoso rose steadily, yet net revenue (sales minus discounts) stalled after 2022 and then declined. Deep discounts, focus on new-customer acquisition, and uneven store results have limited profit growth. This analysis aims to identify the main factors and offer practical recommendations.
 
-So our main question is: **What parts of our sales process (customer types, brand discounts, buying habits, store performance) are helping revenue grow, and which parts are hurting it?** From there, we can choose better pricing and promotional tactics to increase our net revenue (the money we keep after discounts).
+## Assumptions  
+1. The SQL views include every order, discount record, customer type flag, and store sale from 2015–2024.  
+2. Customer labels “new” versus “returning” remain consistent.  
+3. Discount values match the promotions Contoso ran.  
+4. Seasonal events and economic shifts fall outside this study.  
+5. No major data errors distort the findings.
 
----
+## Research Questions  
+1. **Cohort & Revenue Trends**  
+   - How did net revenue change each year?  
+   - What share comes from new customers versus returning customers?  
 
-## Assumptions
+2. **Brand & Discount Effects**  
+   - How much revenue became discounts, and how much remained?  
+   - Which brands received the most discounts, and which earned the most net revenue?  
+   - How does average discount percentage track with net revenue over time?
 
-1. **Complete Data**: Our four CSV files and Power BI dashboards include every order, discount, customer flag (new vs. returning), and store sale from 2015 through 2024.  
-2. **Consistent Flags**: The way we mark someone as a “new” or “existing” customer hasn’t changed over time.  
-3. **Accurate Discounts**: Discount amounts in the data really match the coupons or price cuts we offered.  
-4. **Outside Factors Ignored**: Things like holidays, special events, or big economic changes aren’t part of this analysis—we’re focused purely on prices, discounts, and customer behavior.  
-5. **No Major Errors**: There are no big mistakes in the data (like duplicated orders) that would make our charts misleading.
+3. **Customer Behavior & Timing**  
+   - For a chosen product category and gender, how do discounts compare to net revenue?  
+   - Which weekday has the highest order count?  
+   - Which product colors sell the most?
 
----
+4. **Store & Variant Analysis**  
+   - How did quarterly discount totals and net revenue evolve?  
+   - Which store locations lead in sales?  
+   - Which product variants appear most often?
 
-## Research Questions
-
-1. **Cohort & Geography**  
-   - How did total net revenue (sales minus discounts) change each year?  
-   - How much did new customers contribute versus returning customers?  
-   - Which countries bought the most from us?
-
-2. **Brand & Discount Impact**  
-   - In total, how much revenue did we have before discounts (“base revenue”) and how much discount did we give?  
-   - Which brands received the largest share of our discount budget?  
-   - After discounts, which brands still made the most money?  
-   - Over time, did average discount percentages go up or down, and how did that affect net revenue?
-
-3. **Customer Demographics & Timing**  
-   - Looking at a single product category (e.g. Audio) and one gender (e.g. Male), how did discounts relate to the money we actually kept?  
-   - Which day of the week has the most orders?  
-   - What colors of product did customers choose most often?
-
-4. **Store & Quarterly Trends**  
-   - From quarter to quarter, how did our discount totals and net revenue move?  
-   - Which physical stores (by region or city) sold the most?  
-   - Which product descriptions (SKUs) appear most frequently in orders?
-
----
-
-## Hypotheses
-
-1. **New vs. Returning**  
-   - New customers bring in more sales volume because we discount heavily to win them, but returning customers are more profitable since they don’t need as big a discount.  
-2. **Discounts Drive Volume but Hurt Margins**  
-   - If we cut prices by a higher percentage, we’ll see more orders, but the extra volume won’t fully make up for the smaller margin per sale.  
-3. **Weekend & Demographic Patterns**  
-   - People shop most on Saturday, and maybe men and women shop differently (e.g., picking different colors).  
-4. **Store Performance**  
-   - The oldest or flagship stores do most of the business, while smaller or newer locations lag behind.
-
----
+## Hypotheses  
+1. Higher discount rates drive more orders but reduce profit per sale.  
+2. Returning customers deliver more net revenue per order since they require smaller discounts.  
+3. Orders peak from Wednesday through Saturday, suggesting the best days for promotions.  
+4. A few flagship stores generate most sales while smaller locations lag.
 
 ## Analysis & Findings
 
-### 1. Cohort & Geography
-
+### 1. Cohort & Geography  
 - **Total Orders & Net Revenue**  
-  - We processed about **200,000 orders** from 2015–2024.  
-  - Those orders generated **\$182.2 M** before discounts and **\$171.4 M** after **\$10.9 M** in discounts.
-
+  - ~200,000 orders from 2015–2024  
+  - \$182.2 M gross sales, \$10.9 M discounts, \$171.4 M net  
 - **Year-over-Year Trend**  
-  - Net revenue climbed from **\$10 M** in 2015 to **\$45 M** in 2022, then dipped to **\$20 M** by 2024.
+  - Net rose from \$10 M (2015) to \$45 M (2022), then fell to \$20 M (2024)  
+- **New vs. Returning**  
+  - New customers: \$136 M (66 %) of net  
+  - Returning: \$70 M (34 %) of net  
+- **Top Countries**  
+  - United States (~40 %), followed by Canada, Germany, Australia, U.K., Italy, Netherlands, France  
 
-- **New vs. Returning Customers**  
-  - **New customers** contributed **\$136 M** (66 %).  
-  - **Returning customers** contributed **\$70 M** (34 %).
+🖥️ Query: [cohort_analysis.sql](/2_cohort_year_analysis.sql)  
+📈 Visualization:  
+![Cohort & Geography](/images/cohort_analysis.png)
 
-- **Geographic Split**  
-  - **United States** leads with ~40 % of net revenue, followed by Canada, Germany, Australia, the U.K., Italy, the Netherlands, and France.
-
-**🖥️ Query**: [cohort_analysis](/2_cohort%20_year_analysis.sql)
-
-**📈 Visualization:**
-![Cohort & Geographic Analysis](/images%20of%20visualization/cohort_analysis.png)
-
----
-
-### 2. Brand & Discount Impact
-
+### 2. Brand & Discount Impact  
 - **Aggregate Numbers**  
-  - **Base revenue** (before discounts): **\$182.2 M**  
-  - **Total discount given**: **\$10.9 M**  
-  - **Net revenue** (after discounts): **\$171.4 M**
-
+  - Base revenue: \$182.2 M  
+  - Total discounts: \$10.9 M  
+  - Net revenue: \$171.4 M  
 - **Discount by Brand**  
-  1. Brand A: **\$2.95 M** (31.6 %)  
-  2. Brand B: **\$2.24 M** (24.0 %)  
-  3. Brand C: **\$1.82 M** (19.5 %)  
-  4. Brand D: **\$1.26 M** (13.5 %)  
-  5. Brand E: **\$1.06 M** (11.3 %)
-
-- **Net Revenue by Brand**  
-  1. Adventure Works: **\$47 M**  
-  2. Wide World Importers: **\$35 M**  
-  3. The Phone Company: **\$29 M**  
-  4. Fabrikam: **\$20 M**  
-  5. Proseware: **\$17 M**
-
+  1. Brand A: \$2.95 M (31.6 %)  
+  2. Brand B: \$2.24 M (24.0 %)  
+  3. Brand C: \$1.82 M (19.5 %)  
+  4. Brand D: \$1.26 M (13.5 %)  
+  5. Brand E: \$1.06 M (11.3 %)  
+- **Net by Brand**  
+  1. Adventure Works: \$47 M  
+  2. Wide World Importers: \$35 M  
+  3. The Phone Company: \$29 M  
+  4. Fabrikam: \$20 M  
+  5. Proseware: \$17 M  
 - **Trend Over Time**  
-  - Net revenue rose steadily from **\$5 M** in 2015 to **\$38 M** in 2022.  
-  - Average discount percent went from **9.5 %** to **10.5 %.**
+  - Net grew from \$5 M (2015) to \$38 M (2022)  
+  - Average discount rose from 9.5 % to 10.5 %
 
-**🖥️ Query**: [brand_revenue_discount](/1_brand_revenue_discount.sql)
+🖥️ Query: [brand_revenue_discount.sql](/1_brand_revenue_discount.sql)  
+📈 Visualization:  
+![Brand & Discount](/images/brand_rev_dis.png)
 
-**📈 Visualization:**
-![Brand & Discount Analysis](/images%20of%20visualization/brand_rev_dis.png)
-
----
-
-### 3. Customer Demographics & Timing
-
-*(Filtered: Audio category, Male customers, Age 19–85.)*
-
-- **Discount vs. Net Revenue**  
-  - We gave **\$164 K** in discounts and ended with **\$2.65 M** net revenue.
-
-- **Orders by Day of Week**  
-  - **Saturday**: ~1,700 orders  
-  - **Thursday**: ~1,500  
-  - **Wednesday**: ~1,350  
-  - then Friday, Tuesday, Monday, Sunday
-
+### 3. Customer Behavior & Timing  
+*(Audio products, Male customers)*  
+- **Discount vs. Net**  
+  - \$164 K in discounts, \$2.65 M net  
+- **Orders by Weekday**  
+  - Saturday: ~1,700  
+  - Thursday: ~1,500  
+  - Wednesday: ~1,350  
+  - Friday, Tuesday, Monday, Sunday follow  
 - **Color Preferences**  
   - Top color: ~1,750 orders (29.6 %)  
-  - Next four colors between 12–22 % each  
-  - Together they make up 96 % of orders.
+  - Next four colors total 66.4 %  
+  - Five colors cover 96 % of orders  
 
-**🖥️ Query**: [Gender_based_sales_analysis.sql](/4_Gender_based_sales_analysis.sql)
+🖥️ Query: [gender_based_sales_analysis.sql](/4_Gender_based_sales_analysis.sql)  
+📈 Visualization:  
+![Demographics & Timing](/images/gender_based_analysis.png)
 
-**📈 Visualization:**
-![Demographics & Timing](/images%20of%20visualization/gender_based_analysis.png)
+### 4. Store & Variant Trends  
+- **Quarterly Discounts vs. Net**  
+  - Q1 2015: \$0.1 M discounts, \$1.5 M net  
+  - Q3 2019: \$0.5 M discounts, \$10 M net  
+- **Product Variant Counts**  
+  - Top variants appear 2,100 – 3,400 times  
+- **Store Footprint**  
+  - Contoso Store Freie Hansestadt is largest  
+  - Others: Australian Capital, La Rambla, etc.  
 
----
+🖥️ Query: [store_sales_analysis.sql](/3_store_sales_analysis.sql)  
+📈 Visualization:  
+![Store & Quarterly Trends](/images/store_sale_analysis.png)
 
-### 4. Store & Quarterly Trends
+## Suggestions  
+1. **Limit Discount Levels**  
+   Keep standard discounts near 10 % and use flash deals for high-margin variants.  
 
-- **Quarterly Discount vs. Net Revenue**  
-  - Q1 2015: **\$0.1 M** discounts, **\$1.5 M** net.  
-  - Q3 2019: **\$0.5 M** discounts, **\$10 M** net.
+2. **Encourage Repeat Business**  
+   Offer loyalty perks to returning customers to boost net revenue per order.  
 
-- **Product Description (SKU) Counts**  
-  - Top SKUs range from **2,100** to **3,400** distinct items.
+3. **Optimize Brand Offers**  
+   Test tiered or bundled deals for brands with high discount spend but low net return.  
 
-- **Store Footprint (Treemap)**  
-  - **Contoso Store Freie Hansestadt** is by far the largest.  
-  - Other notable regions: Australian Capital, La Rambla, etc.  
-  - Several smaller stores show up in very small areas.
+4. **Time Promotions Wisely**  
+   Schedule main promotions Wednesday through Saturday and a quick Tuesday flash sale.  
 
-**🖥️ Query**: [Store_sales_Analysis](/3_store_sales_analysis.sql)
+5. **Bundle Fast & Slow Movers**  
+   Pair top variants or colors with slower items in value bundles to clear inventory.  
 
-**📈 Visualization:**
-![Store & Quarterly Trends](/images%20of%20visualization/store_sale_analysis.png)
+6. **Focus on Top Locations**  
+   Direct marketing resources to high-performing stores and trial pop-ups in smaller markets.  
 
----
-
-## Suggestions
-
-1. **Shift Spending to Retention**  
-   Reward returning customers with loyalty perks—they buy without big discounts.
-
-2. **Target Brand Discounts**  
-   For brands that burn through discount dollars without top-line gains, use limited-time or tiered offers instead of flat cuts.
-
-3. **Cap & Focus Discounts**  
-   Keep standard discounts around 10 %, then run small flash sales on high-margin items.
-
-4. **Use Peak Shopping Days**  
-   Schedule promotions Wed–Sat, and try a “Tuesday Flash Sale” for slower days.
-
-5. **Bundle Best & Slow Movers**  
-   Pair top colors or SKUs with slower-moving ones in bundles to clear inventory.
-
-6. **Optimize Store Footprint**  
-   Move marketing from under-utilized stores to flagship locations; explore pop-ups in smaller regions.
-
-7. **Monitor Cohort Conversion**  
-   Track how many new customers come back without extra discounts to measure real loyalty.
+7. **Measure New-Customer Loyalty**  
+   Track how many new customers return without extra discounts to assess retention efforts.  
