@@ -1,4 +1,4 @@
-# Sales & Discount Analysis Report
+# Sales Report
 
 ## Overview  
 This project looks at our company’s sales and discount data from 2015 to 2024. It uses four CSV files and four Power BI dashboards to show how orders, discounts, customer habits, and store results work together. The goal is to find what drives our net revenue and suggest ways to improve pricing, promotions, and customer loyalty.
