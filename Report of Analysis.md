@@ -51,9 +51,9 @@ Order volume at Contoso rose steadily, yet net revenue (sales minus discounts) s
 - **Top Countries**  
   - United States (~40 %), followed by Canada, Germany, Australia, U.K., Italy, Netherlands, France  
 
-🖥️ Query: [cohort_analysis.sql](/2_cohort_year_analysis.sql)  
+🖥️ Query: [cohort_analysis.sql](/SQL%20queries/2_cohort%20_year_analysis.sql)  
 📈 Visualization:  
-![Cohort & Geography](/images/cohort_analysis.png)
+![Cohort & Geography](/images%20of%20visualization/cohort_analysis.png)
 
 ### 2. Brand & Discount Impact  
 - **Aggregate Numbers**  
@@ -76,9 +76,9 @@ Order volume at Contoso rose steadily, yet net revenue (sales minus discounts) s
   - Net grew from \$5 M (2015) to \$38 M (2022)  
   - Average discount rose from 9.5 % to 10.5 %
 
-🖥️ Query: [brand_revenue_discount.sql](/1_brand_revenue_discount.sql)  
+🖥️ Query: [brand_revenue_discount.sql](/SQL%20queries/1_brand_revenue_discount.sql)  
 📈 Visualization:  
-![Brand & Discount](/images/brand_rev_dis.png)
+![Brand & Discount](/images%20of%20visualization/brand_rev_dis.png)
 
 ### 3. Customer Behavior & Timing  
 *(Audio products, Male customers)*  
@@ -94,9 +94,9 @@ Order volume at Contoso rose steadily, yet net revenue (sales minus discounts) s
   - Next four colors total 66.4 %  
   - Five colors cover 96 % of orders  
 
-🖥️ Query: [gender_based_sales_analysis.sql](/4_Gender_based_sales_analysis.sql)  
+🖥️ Query: [gender_based_sales_analysis.sql](/SQL%20queries/4_Gender_based_sales_analysis.sql)  
 📈 Visualization:  
-![Demographics & Timing](/images/gender_based_analysis.png)
+![Demographics & Timing](/images%20of%20visualization/gender_based_analysis.png)
 
 ### 4. Store & Variant Trends  
 - **Quarterly Discounts vs. Net**  
@@ -108,10 +108,12 @@ Order volume at Contoso rose steadily, yet net revenue (sales minus discounts) s
   - Contoso Store Freie Hansestadt is largest  
   - Others: Australian Capital, La Rambla, etc.  
 
-🖥️ Query: [store_sales_analysis.sql](/3_store_sales_analysis.sql)  
+🖥️ Query: [store_sales_analysis.sql](/SQL%20queries/3_store_sales_analysis.sql)  
 📈 Visualization:  
-![Store & Quarterly Trends](/images/store_sale_analysis.png)
+![Store & Quarterly Trends](/images%20of%20visualization/store_sale_analysis.png)
 
+## The Visualization dashboard 
+[Sales Dashboard Using PowerBI Github link](/project_2%20dashboard.pbix) 
 ## Suggestions  
 1. **Limit Discount Levels**  
    Keep standard discounts near 10 % and use flash deals for high-margin variants.  
