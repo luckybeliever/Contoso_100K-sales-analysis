@@ -1,4 +1,4 @@
-# Sales & Discount Analysis Report
+# Sales Analysis of Contoso_100K dataset
 
 Over the last ten years (2015–2024), our company has sold more and more products every year. But at the same time, we’ve been giving bigger and bigger discounts. We worry that these discounts and a changing mix of new versus returning customers might be cutting into our profits.
 
@@ -72,7 +72,10 @@ So our main question is: **What parts of our sales process (customer types, bran
 - **Geographic Split**  
   - **United States** leads with ~40 % of net revenue, followed by Canada, Germany, Australia, the U.K., Italy, the Netherlands, and France.
 
-![Cohort & Geographic Analysis](/mnt/data/41f7e3f4-51ca-4018-827b-e45e7b263768.png)
+**🖥️ Query**: [cohort_analysis](/2_cohort%20_year_analysis.sql)
+
+**📈 Visualization:**
+![Cohort & Geographic Analysis](/images%20of%20visualization/cohort_analysis.png)
 
 ---
 
@@ -101,7 +104,10 @@ So our main question is: **What parts of our sales process (customer types, bran
   - Net revenue rose steadily from **\$5 M** in 2015 to **\$38 M** in 2022.  
   - Average discount percent went from **9.5 %** to **10.5 %.**
 
-![Brand & Discount Analysis](/mnt/data/7b96ba41-8cc4-4e36-b566-37e3c23cab9f.png)
+**🖥️ Query**: [brand_revenue_discount](/1_brand_revenue_discount.sql)
+
+**📈 Visualization:**
+![Brand & Discount Analysis](/images%20of%20visualization/brand_rev_dis.png)
 
 ---
 
@@ -123,7 +129,10 @@ So our main question is: **What parts of our sales process (customer types, bran
   - Next four colors between 12–22 % each  
   - Together they make up 96 % of orders.
 
-![Demographics & Timing](/mnt/data/a8a1c2f9-e6e3-4e36-b566-37e3c23cab9f.png)
+**🖥️ Query**: [Gender_based_sales_analysis.sql](/4_Gender_based_sales_analysis.sql)
+
+**📈 Visualization:**
+![Demographics & Timing](/images%20of%20visualization/gender_based_analysis.png)
 
 ---
 
@@ -141,7 +150,10 @@ So our main question is: **What parts of our sales process (customer types, bran
   - Other notable regions: Australian Capital, La Rambla, etc.  
   - Several smaller stores show up in very small areas.
 
-![Store & Quarterly Trends](/mnt/data/1b5a0109-d231-4515-8f60-ac28b4d0f248.png)
+**🖥️ Query**: [Store_sales_Analysis](/3_store_sales_analysis.sql)
+
+**📈 Visualization:**
+![Store & Quarterly Trends](/images%20of%20visualization/store_sale_analysis.png)
 
 ---
 
